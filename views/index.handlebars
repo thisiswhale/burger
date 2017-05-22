@@ -1,0 +1,42 @@
+<div class="row" id="input-hbs">
+
+  {{#each burgers}}
+  <!-- Burger column -->
+  {{#unless this.devoured}}
+
+    <div class="col-lg-4 not-devoured-box">
+      <p>{{this.id}}. {{this.burger_name}}</p>
+    </div>
+    <div class="col-lg-2 col-lg-offset-2">
+      <form action="/{{this.id}}?_method=PUT" method="POST">
+        <input type="hidden" name="devoured" value="true">
+        <button type="submit" class="btn btn-warning">Devour it!</button>
+      </form>
+    </div>
+<br>
+
+  {{/unless}}
+    <!-- Burger devoured column -->
+    <!-- devoured = true -->
+    {{#if this.devoured}}
+        <div class="col-lg-4 devoured-box">
+          <p>{{this.id}}. {{this.burger_name}}</p>
+        </div>
+      <br>
+    {{/if}}
+
+  {{/each}}
+</div>
+
+<br>
+<div class="row" id="order-form">
+  <div class="col-lg-4 col-lg-offset-4">
+    <h3 cl><strong><i>Order a Burger!</i></strong></h3>
+    <br>
+    <form class="create-update-form" action="/" method="POST">
+      <input type="text" class="form-control" id="burger-form" name="burger_name" placeholder="Get yourself a sexy burger yo!">
+      <br>
+      <button type="submit" class="btn btn-success">Order it!!</button>
+    </form>
+  </div>
+</div>
